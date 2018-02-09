@@ -151,7 +151,7 @@ class ThnxBlockLogo extends Module implements WidgetInterface
 
                         if (!move_uploaded_file($_FILES['thnxBLOCKLOGO_IMG_'.$lang['id_lang']]['tmp_name'], dirname(__FILE__).DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.$file_name)) {
                             return $this->displayError($this->l('An error occurred while attempting to upload the file.'));
-                        } els {
+                        } else {
                             if (Configuration::hasContext('thnxBLOCKLOGO_IMG', $lang['id_lang'], Shop::getContext())
                                 && Configuration::get('thnxBLOCKLOGO_IMG', $lang['id_lang']) != $file_name) {
                                 @unlink(dirname(__FILE__).DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.Configuration::get('thnxBLOCKLOGO_IMG', $lang['id_lang']));
