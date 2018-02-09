@@ -80,12 +80,12 @@ class thnxblocklogo extends Module implements WidgetInterface
 		else
 			return true;
 	}
-	public function renderWidget($hookName = null, array $configuration = [])
+	public function renderWidget($hookName = null, $configuration = array())
 	{
 	    $this->smarty->assign($this->getWidgetVariables($hookName,$configuration));
 	    return $this->fetch('module:'.$this->name.'/views/templates/front/'.$this->name.'.tpl');	
 	}
-	public function getWidgetVariables($hookName = null, array $configuration = [])
+	public function getWidgetVariables($hookName = null, $configuration = array())
 	{
 		$return_arr = array();
 	    $imgname = Configuration::get('thnxBLOCKLOGO_IMG', $this->context->language->id);
