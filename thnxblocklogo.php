@@ -53,13 +53,13 @@ class ThnxBlockLogo extends Module implements WidgetInterface
         }
         return true;
     }
-    public function xpertsampledata($demo=NULL)
+    public function xpertsampledata($demo = null)
     {
-        if (($demo==NULL) || (empty($demo))) {
+        if (($demo == null) || (empty($demo))) {
             $demo = "demo_1";
         }
         $func = 'xpertsample_'.$demo;
-        if (method_exists($this,$func)){
+        if (method_exists($this, $func)) {
             $this->{$func}();
         }
         return true;
@@ -97,8 +97,8 @@ class ThnxBlockLogo extends Module implements WidgetInterface
             $imgname[$lang['id_lang']] = $logo;
             $DESC[$lang['id_lang']] = '';
         }
-        Configuration::updateValue('thnxBLOCKLOGO_IMG',$imgname);
-        Configuration::updateValue('thnxBLOCKLOGO_DESC',$DESC);
+        Configuration::updateValue('thnxBLOCKLOGO_IMG', $imgname);
+        Configuration::updateValue('thnxBLOCKLOGO_DESC', $DESC);
         return true;
     }
     public function uninstall()
@@ -116,14 +116,14 @@ class ThnxBlockLogo extends Module implements WidgetInterface
     }
     public function renderWidget($hookName = null, $configuration = array())
     {
-        $this->smarty->assign($this->getWidgetVariables($hookName,$configuration));
-        return $this->fetch('module:'.$this->name.'/views/templates/front/'.$this->name.'.tpl');    
+        $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
+        return $this->fetch('module:'.$this->name.'/views/templates/front/'.$this->name.'.tpl');
     }
     public function getWidgetVariables($hookName = null, $configuration = array())
     {
         $return_arr = array();
         $imgname = Configuration::get('thnxBLOCKLOGO_IMG', $this->context->language->id);
-        if ($imgname && file_exists(_PS_MODULE_DIR_.$this->name.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.$imgname)){
+        if ($imgname && file_exists(_PS_MODULE_DIR_.$this->name.DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.$imgname)) {
             $return_arr['thnxlogo_img'] =  $this->context->link->protocol_content.Tools::getMediaServer($imgname).$this->_path.'img/'.$imgname;
             $return_arr['thnxlogo_desc'] =  Configuration::get('thnxBLOCKLOGO_DESC', $this->context->language->id);
             $return_arr['thnxlogo_height'] =  Configuration::get('thnxBLOCKLOGO_Height');
@@ -138,8 +138,7 @@ class ThnxBlockLogo extends Module implements WidgetInterface
             $languages = Language::getLanguages(false);
             $values = array();
             $update_images_values = false;
-            foreach ($languages as $lang)
-            {
+            foreach ($languages as $lang) {
                 if (isset($_FILES['thnxBLOCKLOGO_IMG_'.$lang['id_lang']])
                     && isset($_FILES['thnxBLOCKLOGO_IMG_'.$lang['id_lang']]['tmp_name'])
                     && !empty($_FILES['thnxBLOCKLOGO_IMG_'.$lang['id_lang']]['tmp_name'])) {
@@ -245,8 +244,8 @@ class ThnxBlockLogo extends Module implements WidgetInterface
             $fields['thnxBLOCKLOGO_IMG'][$lang['id_lang']] = Tools::getValue('thnxBLOCKLOGO_IMG_'.$lang['id_lang'], Configuration::get('thnxBLOCKLOGO_IMG', $lang['id_lang']));
             $fields['thnxBLOCKLOGO_DESC'][$lang['id_lang']] = Tools::getValue('thnxBLOCKLOGO_DESC_'.$lang['id_lang'], Configuration::get('thnxBLOCKLOGO_DESC', $lang['id_lang']));
         }
-        $fields['thnxBLOCKLOGO_Height'] = Tools::getValue('thnxBLOCKLOGO_Height',Configuration::get('thnxBLOCKLOGO_Height'));
-        $fields['thnxBLOCKLOGO_Width'] = Tools::getValue('thnxBLOCKLOGO_Width',Configuration::get('thnxBLOCKLOGO_Width'));
+        $fields['thnxBLOCKLOGO_Height'] = Tools::getValue('thnxBLOCKLOGO_Height', Configuration::get('thnxBLOCKLOGO_Height'));
+        $fields['thnxBLOCKLOGO_Width'] = Tools::getValue('thnxBLOCKLOGO_Width', Configuration::get('thnxBLOCKLOGO_Width'));
         return $fields;
     }
 }
